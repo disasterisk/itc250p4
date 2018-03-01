@@ -1,5 +1,5 @@
 <html>
-
+<!--feed.php-->
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -43,6 +43,10 @@
 
 
 <?php
+/*
+    Code review is in a document that I have made. I will be
+    showing during work time tomorrow. -WF
+*/
 //read-feed-simpleXML.php
 //our simplest example of consuming an RSS feed
 //$Chosen = ;
@@ -68,12 +72,16 @@ if(isset($_GET["ID"])){
 
   print '<h1>' . $xml->channel->title . '</h1>';
   foreach($xml->channel->item as $story){
-echo'
-    <div class="card" style=" border-style: dotted;">
-    <div class="card-body">
-      <h4 class="card-title">';
-      echo'</h4>
-      <a href="' . $story->link ;
+      
+      /**
+        Going to play around with this part of the code. -WF
+      **/
+    echo'
+        <div class="card" style=" border-style: dotted;">
+        <div class="card-body">
+            <h4 class="card-title">';
+    echo'</h4>
+    <a href="' . $story->link ;
       echo'" class="card-link">'. $story->title;
       echo'</a> <p class ="card-text">' . $story->description ;
       echo'</p>
@@ -84,7 +92,7 @@ echo'
   }
 }
 else{
-  echo" Choose a subject to explore!";
+  echo "Choose a subject to explore!";
 }
 
 
