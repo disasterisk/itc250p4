@@ -67,7 +67,8 @@ $database = array("https://news.google.com/news/rss/search/section/q/cats%20-bas
 "https://news.google.com/news/rss/search/section/q/Playstation%204/Playstation%204?hl=en&gl=US&ned=us",
 "https://news.google.com/news/rss/search/section/q/PC%20gaming/PC%20gaming?hl=en&gl=US&ned=us");
 
-function displayNews($num, $array){ // Function displays the news in a neat manner when given a ID
+function displayNews($num, $array)
+{ // Function displays the news in a neat manner when given a ID
   $request = $array[$num]; // choose RSS
   $response = file_get_contents($request);
   $xml = simplexml_load_string($response);
