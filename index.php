@@ -116,7 +116,7 @@ echo '
   </ul>
 </div>';
 
-session_start();
+//session_start();
 
 $database = array("https://news.google.com/news/rss/search/section/q/cats%20-baseball/cats%20-baseball?hl=en&gl=US&ned=us", // Array that hold all the RSS, replace with DB later
 "https://news.google.com/news/rss/search/section/q/dogs%20-%22hot%20dogs%22/dogs%20-%22hot%20dogs%22?hl=en&gl=US&ned=us",
