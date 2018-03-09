@@ -34,11 +34,11 @@ date_format(s.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
 ";
 
 #Fills <title> tag. If left empty will default to $PageTitle in config_inc.php  
-$config->titleTag = 'Surveys made with love & PHP in Seattle';
+$config->titleTag = 'Feeds made with love & PHP in Seattle';
 
 #Fills <meta> tags.  Currently we're adding to the existing meta tags in config_inc.php
-$config->metaDescription = 'Seattle Central\'s ITC250 Class Surveys are made with pure PHP! ' . $config->metaDescription;
-$config->metaKeywords = 'Surveys,PHP,Fun,Regular,Regular Expressions,'. $config->metaKeywords;
+$config->metaDescription = 'Seattle Central\'s ITC250 Class Feeds are made with pure PHP! ' . $config->metaDescription;
+$config->metaKeywords = 'RSS Feeds,PHP,Fun,Regular,Regular Expressions,'. $config->metaKeywords;
 
 //adds font awesome icons for arrows on pager
 $config->loadhead .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
