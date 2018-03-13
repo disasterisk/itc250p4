@@ -23,11 +23,30 @@
 
 # '../' works for a sub-folder.  use './' for the root  
 require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials 
- 
+
+/*$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+if ($conn->connect_error) {
+   echo("Connection failed: " . $conn->connect_error);
+};
+
+  $sql = 'SELECT url FROM wn18_feeds WHERE ID = 2' /*.  $num;
+  $url = '';
+  $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()) {
+            $url = $row['url'];
+        }
+    };
+
+echo $url;
+
+*/
 # SQL statement
 //$sql = "select MuffinName, MuffinID, Price from test_Muffins";
 
-/*$sql = 
+
+/*
 "
 select CONCAT(a.FirstName, ' ', a.LastName) AdminName, s.SurveyID, s.Title, s.Description, 
 date_format(s.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
@@ -92,9 +111,9 @@ echo '
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pets
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li><a href="feed.php?ID=0">Cats</a></li>
-    <li><a href="feed.php?ID=1">Dogs</a></li>
-    <li><a href="feed.php?ID=2">Pot-bellied Pigs</a></li>
+    <li><a href="index.php?ID=0">Cats</a></li>
+    <li><a href="index.php?ID=1">Dogs</a></li>
+    <li><a href="index.php?ID=2">Pot-bellied Pigs</a></li>
   </ul>
 </div>
 
@@ -102,9 +121,9 @@ echo '
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Art
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li><a href="feed.php?ID=3">Music</a></li>
-    <li><a href="feed.php?ID=4">Painting</a></li>
-    <li><a href="feed.php?ID=5">Dance</a></li>
+    <li><a href="index.php?ID=3">Music</a></li>
+    <li><a href="index.php?ID=4">Painting</a></li>
+    <li><a href="index.php?ID=5">Dance</a></li>
   </ul>
 </div>
 
@@ -112,9 +131,9 @@ echo '
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Video Games
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li><a href="feed.php?ID=6">XBox One</a></li>
-    <li><a href="feed.php?ID=7">Playstation 4</a></li>
-    <li><a href="feed.php?ID=8">PC</a></li>
+    <li><a href="index.php?ID=6">XBox One</a></li>
+    <li><a href="index.php?ID=7">Playstation 4</a></li>
+    <li><a href="index.php?ID=8">PC</a></li>
   </ul>
 </div>';
 
@@ -132,9 +151,25 @@ $database = array("https://news.google.com/news/rss/search/section/q/cats%20-bas
 
 function displayNews($num, $array)
 { // Function displays the news in a neat manner when given a ID
-  $request = $array[$num]; // choose RSS
-  $response = file_get_contents($request);
-  $xml = simplexml_load_string($response);
+    $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+    if ($conn->connect_error) {
+        echo("Connection failed: " . $conn->connect_error);
+    };
+
+    $sql = 'SELECT url FROM wn18_feeds WHERE ID = 2' /*.  $num*/;
+    $url = '';
+    $result = $conn->query($sql);
+    if($result->num_rows > 0){
+        while($row = $result->fetch_assoc()) {
+            $url = $row['url'];
+        }
+    };
+    echo $url;
+    $request = $url; // choose RSS
+    $response = file_get_contents($request);
+    $xml = simplexml_load_string($response);
+
   echo "The ID stored in the session is " . $_SESSION['id']; // I left this hear so you know what the session is, we can delete it later
 
   echo '<h1>' . $xml->channel->title . '</h1>'; // ouputs the HTML
@@ -146,9 +181,6 @@ function displayNews($num, $array)
   <hr>';
   }// end of foreach
 }//end of displayNews
-
-
-
 
 if(isset($_GET["ID"])){ //if there is id in the URL it will choose that to display
   $ID = $_GET["ID"];
