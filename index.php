@@ -1,69 +1,22 @@
 <?php
 /**
- * index.php is the first page of our Survey Sez applications it's based on
- * demo_list_pager.php along with demo_view_pager.php provides a sample web application
+ * index.php is a model for largely static PHP pages 
  *
- * The difference between demo_list.php and demo_list_pager.php is the reference to the 
- * Pager class which processes a mysqli SQL statement and spans records across multiple  
- * pages. 
- *
- * The associated view page, demo_view_pager.php is virtually identical to demo_view.php. 
- * The only difference is the pager version links to the list pager version to create a 
- * separate application from the original list/view. 
- * 
- * @package SurveySez
- * @author William Fisher <william.fisher@seattlecenral.edu>
- * @version 0.01 2018/02/06
- * @link http://www.wfdesings.com/
+ * @package nmCommon
+ * @author Bill Newman <williamnewman@gmail.com>
+ * @version 2.091 2011/06/17
+ * @link http://www.newmanix.com/
  * @license https://www.apache.org/licenses/LICENSE-2.0
- * @see survey_view.php
- * @see Pager.php 
+ * @see config_inc.php 
  * @todo none
  */
 
-# '../' works for a sub-folder.  use './' for the root  
-require '../inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials 
 
-/*$conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+require 'inc_0700/config_inc.php'; #provides configuration, pathing, error handling, db credentials
+$config->titleTag = THIS_PAGE; #Fills <title> tag. If left empty will fallback to $config->titleTag in config_inc.php
 
-if ($conn->connect_error) {
-   echo("Connection failed: " . $conn->connect_error);
-};
-
-  $sql = 'SELECT url FROM wn18_feeds WHERE ID = 2' /*.  $num;
-  $url = '';
-  $result = $conn->query($sql);
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()) {
-            $url = $row['url'];
-        }
-    };
-
-echo $url;
-
-*/
-# SQL statement
-//$sql = "select MuffinName, MuffinID, Price from test_Muffins";
-
-
-/*
-"
-select CONCAT(a.FirstName, ' ', a.LastName) AdminName, s.SurveyID, s.Title, s.Description, 
-date_format(s.DateAdded, '%W %D %M %Y %H:%i') 'DateAdded' from "
-. PREFIX . "surveys s, " . PREFIX . "Admin a where s.AdminID=a.AdminID order by s.DateAdded desc
-";
-*/
-
-#Fills <title> tag. If left empty will default to $PageTitle in config_inc.php  
-$config->titleTag = 'Feeds made with love & PHP in Seattle';
-
-#Fills <meta> tags.  Currently we're adding to the existing meta tags in config_inc.php
-$config->metaDescription = 'Seattle Central\'s ITC250 Class Feeds are made with pure PHP! ' . $config->metaDescription;
-$config->metaKeywords = 'RSS Feeds,PHP,Fun,Regular,Regular Expressions,'. $config->metaKeywords;
-
-//adds font awesome icons for arrows on pager
-$config->loadhead .= '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">';
-
+//below you can add a link to a unique page to the existing nav as follows
+//$config->nav1 = array("aboutus.php"=>"About Us") + $config->nav1; 
 /*
 $config->metaDescription = 'Web Database ITC281 class website.'; #Fills <meta> tags.
 $config->metaKeywords = 'SCCC,Seattle Central,ITC281,database,mysql,php';
@@ -80,120 +33,29 @@ $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page 
 # END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to theme header or header_inc.php
-
-/*<!--
-<html>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<style>
-
-.card-text, .card, .card-header{
-  padding: 5px;
-}
-
-.card-header{
-  background-color: lightblue;
-}
-
-img{
-  padding: 10px !important;
-}
-</style>
--->*/
-
-    
-echo '    
-<div class="btn-group dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pets
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="index.php?ID=0">Cats</a></li>
-    <li><a href="index.php?ID=1">Dogs</a></li>
-    <li><a href="index.php?ID=2">Pot-bellied Pigs</a></li>
-  </ul>
+?>
+<div class="jumbotron" style="margin-top:.5em;">
+	<h1><?=$config->banner;?></h1>
+	<p><em><?=$config->slogan;?></em></p>
+	<a href="http://www.bootswatch.com/" target="_blank" class="btn btn-primary btn-lg">Learn more</a>
 </div>
+<p>Here are a few more links to demo files that can be used as starting points when building web applications:</p>
+<p><a href="<?=VIRTUAL_PATH;?>demo/item_demo.php" target="_blank">items_list</a>: A sample of item view
+<p><a href="<?=VIRTUAL_PATH;?>demo/demo_shared.php" target="_blank">demo_shared</a>: A  singleton class based mysqli database (shared) connection application using the Customers table. Best starting point for a non-specific database enabled application </p>
+<p><a href="<?=VIRTUAL_PATH;?>demo/demo_postback.php">postback</a>: A vanilla postback switch based application with no specific code other than submittal via POST. Use for building complex postback applications. Compare to <strong>demo_edit</strong> to see what this file can be used to create. </p>
+<p><a href="<?=VIRTUAL_PATH;?>demo/demo_list_pager.php" target="_blank">demo_list_pager</a>: A &quot;muffin&quot; example that incorporates the Pager class into a  list/view application. Best starting point for a List/View app </p>
+<p><a href="<?=VIRTUAL_PATH;?>demo/demo_add.php" target="_blank">demo_add</a>: A postback switch based application for adding new records to the Customers table.</p>
+<p><a href="<?=VIRTUAL_PATH;?>demo/demo_edit.php" target="_blank">demo_edit</a>: A postback switch based application for editing existing records in the Customers table</p>
+<p>&nbsp; </p>
+<?php
 
-<div class="btn-group dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Art
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="index.php?ID=3">Music</a></li>
-    <li><a href="index.php?ID=4">Painting</a></li>
-    <li><a href="index.php?ID=5">Dance</a></li>
-  </ul>
-</div>
+//add a benchmarking note as follows:
+//$config->benchNote = "Test From Index File!";
 
-<div class="btn-group dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Video Games
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-    <li><a href="index.php?ID=6">XBox One</a></li>
-    <li><a href="index.php?ID=7">Playstation 4</a></li>
-    <li><a href="index.php?ID=8">PC</a></li>
-  </ul>
-</div>';
-
-//session_start();
-
-$database = array("https://news.google.com/news/rss/search/section/q/cats%20-baseball/cats%20-baseball?hl=en&gl=US&ned=us", // Array that hold all the RSS, replace with DB later
-"https://news.google.com/news/rss/search/section/q/dogs%20-%22hot%20dogs%22/dogs%20-%22hot%20dogs%22?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/pot%20bellied%20pig/pot%20bellied%20pig?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/music/music?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/painting/Painting?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/dancing/Dancing?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/Xbox%20one/Xbox%20one?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/Playstation%204/Playstation%204?hl=en&gl=US&ned=us",
-"https://news.google.com/news/rss/search/section/q/PC%20gaming/PC%20gaming?hl=en&gl=US&ned=us");
-
-function displayNews($num, $array)
-{ // Function displays the news in a neat manner when given a ID
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-
-    if ($conn->connect_error) {
-        echo("Connection failed: " . $conn->connect_error);
-    };
-
-    $sql = 'SELECT url FROM wn18_feeds WHERE ID = 2' /*.  $num*/;
-    $url = '';
-    $result = $conn->query($sql);
-    if($result->num_rows > 0){
-        while($row = $result->fetch_assoc()) {
-            $url = $row['url'];
-        }
-    };
-    echo $url;
-    $request = $url; // choose RSS
-    $response = file_get_contents($request);
-    $xml = simplexml_load_string($response);
-
-  echo "The ID stored in the session is " . $_SESSION['id']; // I left this hear so you know what the session is, we can delete it later
-
-  echo '<h1>' . $xml->channel->title . '</h1>'; // ouputs the HTML
-  foreach($xml->channel->item as $story){
-    echo'<div class="card">
-    <h3 class="card-header">'. $story->title . '</h3>
-    <div class"card-block> <p class ="card-text">'. $story->description.'</p> </div>
-  </div>
-  <hr>';
-  }// end of foreach
-}//end of displayNews
-
-if(isset($_GET["ID"])){ //if there is id in the URL it will choose that to display
-  $ID = $_GET["ID"];
-  $_SESSION["id"] =  $ID;
-  displayNews($ID, $database);
-}
-elseif(isset($_SESSION["id"])){ // if there is no id in the URL it will pull from the session
-  displayNews($_SESSION["id"], $database);
-}
-else{
-  echo" Choose a subject to explore!"; //if there is niether, it will tell you to pickQ
-}
+//-----------------------------------------start feed index.php 
 
 
-get_footer();
+
+//-----------------------------------------end feed index.php
+get_footer(); #defaults to theme header or footer_inc.php
 ?>
