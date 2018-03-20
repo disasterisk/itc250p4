@@ -77,6 +77,8 @@ $config->nav1["page.php"] = "New Page!"; #add a new page to end of nav1 (viewabl
 $config->nav1 = array("page.php"=>"New Page!") + $config->nav1; #add a new page to beginning of nav1 (viewable this page only)!!
 */
 
+//dumpDie($conn);
+
 # END CONFIG AREA ---------------------------------------------------------- 
 
 get_header(); #defaults to theme header or header_inc.php
@@ -139,6 +141,9 @@ echo '
 
 //session_start();
 
+//class variables
+   // public $database = array();
+
 $database = array("https://news.google.com/news/rss/search/section/q/cats%20-baseball/cats%20-baseball?hl=en&gl=US&ned=us", // Array that hold all the RSS, replace with DB later
 "https://news.google.com/news/rss/search/section/q/dogs%20-%22hot%20dogs%22/dogs%20-%22hot%20dogs%22?hl=en&gl=US&ned=us",
 "https://news.google.com/news/rss/search/section/q/pot%20bellied%20pig/pot%20bellied%20pig?hl=en&gl=US&ned=us",
@@ -151,15 +156,18 @@ $database = array("https://news.google.com/news/rss/search/section/q/cats%20-bas
 
 function displayNews($num, $array)
 { // Function displays the news in a neat manner when given a ID
-    $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+    $conn = new mysqli('localhost', 'root', 'root', 'itc250_db');
 
     if ($conn->connect_error) {
         echo("Connection failed: " . $conn->connect_error);
     };
-
-    $sql = 'SELECT url FROM wn18_feeds WHERE ID = 2' /*.  $num*/;
+    //strange enough if you change ID to categoryID on line 160 and play around with the numbers it changes but its still buggy. Not sure what is wrong
+    $sql = 'SELECT url FROM wn18_feeds WHERE categoryID = 1'/*.  $num*/; 
     $url = '';
     $result = $conn->query($sql);
+   /* if (!$result) {
+    trigger_error('Invalid query: ' . $conn->error);
+} --shows if code above was true*/
     if($result->num_rows > 0){
         while($row = $result->fetch_assoc()) {
             $url = $row['url'];
