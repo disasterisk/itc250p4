@@ -16,6 +16,7 @@ CREATE TABLE wn18_subcategories(
   subcategoryID INT NOT NULL AUTO_INCREMENT,
   categoryID INT NOT NULL,    
   name VARCHAR(60) NOT NULL,
+  url VARCHAR(255) NOT NULL,
   description varchar(255),
   PRIMARY KEY(subcategoryID),
   INDEX categoryID_index(categoryID),
