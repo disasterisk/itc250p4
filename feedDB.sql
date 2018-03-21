@@ -44,10 +44,10 @@ INSERT INTO wn18_categories (categoryID, name, description) VALUES (2,"Pets", "T
 INSERT INTO wn18_categories (categoryID, name, description) VALUES (3,"Video Games", "The latest video game news");
 
 /*Inserted subcategoryID, categoryID(feedsID needed?)*/
-INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (1,1,"Music","https://news.google.com/news/search/rss/section/q/music/music?hl=en&gl=US&ned=us");
-INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (2,1,"Painting","https://news.google.com/news/search/rss/section/q/painting/painting?hl=en&gl=US&ned=us");
+INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (1,1,"Music","https://news.google.com/news/rss/search/section/q/music/music?hl=en&gl=US&ned=us");
+INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (2,1,"Painting","https://news.google.com/news/rss/search/section/q/painting/painting?hl=en&gl=US&ned=us");
 INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (3,1,"Dance","https://news.google.com/news/rss/search/section/q/dancing/dancing?hl=en&gl=US&ned=us");
-INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (4,2,"Cats","Google Cats Feed", "Cat news from Google", "https://news.google.com/news/rss/search/section/q/cats%20-baseball/cats%20-baseball?hl=en&gl=US&ned=us");
+INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (4,2,"Cats", "https://news.google.com/news/rss/search/section/q/cats%20-baseball/cats%20-baseball?hl=en&gl=US&ned=us");
 INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (5,2,"Dogs","https://news.google.com/news/rss/search/section/q/dogs%20-%22hot%20dogs%22/dogs%20-%22hot%20dogs%22?hl=en&gl=US&ned=us");
 INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (6,2,"Pot-Bellied Pigs","https://news.google.com/news/rss/search/section/q/pot%20bellied%20pig/pot%20bellied%20pig?hl=en&gl=US&ned=us");
 INSERT INTO wn18_subcategories (subcategoryID, categoryID, name, url) VALUES (7,3,"XBox","https://news.google.com/news/rss/search/section/q/Xbox%20one/Xbox%20one?hl=en&gl=US&ned=us");
