@@ -113,9 +113,9 @@ echo '
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Pets
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li><a href="index.php?ID=0">Cats</a></li>
-    <li><a href="index.php?ID=1">Dogs</a></li>
-    <li><a href="index.php?ID=2">Pot-bellied Pigs</a></li>
+    <li><a href="index.php?ID=4">Cats</a></li>
+    <li><a href="index.php?ID=5">Dogs</a></li>
+    <li><a href="index.php?ID=6">Pot-bellied Pigs</a></li>
   </ul>
 </div>
 
@@ -123,9 +123,9 @@ echo '
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Art
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li><a href="index.php?ID=3">Music</a></li>
-    <li><a href="index.php?ID=4">Painting</a></li>
-    <li><a href="index.php?ID=5">Dance</a></li>
+    <li><a href="index.php?ID=1">Music</a></li>
+    <li><a href="index.php?ID=2">Painting</a></li>
+    <li><a href="index.php?ID=3">Dance</a></li>
   </ul>
 </div>
 
@@ -133,9 +133,9 @@ echo '
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Video Games
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
-    <li><a href="index.php?ID=6">XBox One</a></li>
-    <li><a href="index.php?ID=7">Playstation 4</a></li>
-    <li><a href="index.php?ID=8">PC</a></li>
+    <li><a href="index.php?ID=7">XBox One</a></li>
+    <li><a href="index.php?ID=8">Playstation 4</a></li>
+    <li><a href="index.php?ID=9">PC</a></li>
   </ul>
 </div>';
 
@@ -162,7 +162,7 @@ function displayNews($num, $array)
         echo("Connection failed: " . $conn->connect_error);
     };
     //strange enough if you change ID to categoryID on line 160 and play around with the numbers it changes but its still buggy. Not sure what is wrong
-    $sql = 'SELECT url FROM wn18_feeds WHERE categoryID = 1'/*.  $num*/; 
+    $sql = 'SELECT url FROM wn18_feeds WHERE categoryID = 1;'/*.  $num*/; 
     $url = '';
     $result = $conn->query($sql);
    /* if (!$result) {
